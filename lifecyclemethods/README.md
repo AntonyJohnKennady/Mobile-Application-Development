@@ -1,19 +1,18 @@
-# Ex.No:1 To create a HelloWorld Activity using all lifecycles methods to display messages.
-
+# MAD-EXP-7-Develop an android application to display the place name with image using list view in android studio.
 
 ## AIM:
 
-To create a HelloWorld Activity using all lifecycles methods to display messages using Android Studio.
+To create and develop the application to display the place name with image using list view in android studio.
 
 ## EQUIPMENTS REQUIRED:
 
-Latest Version Android Studio
+Android Studio(Latest Version)
 
 ## ALGORITHM:
 
-Step 1: Open Android Stdio and then click on File -> New -> New project.
+Step 1: Open Android Studio and then click on File -> New -> New project.
 
-Step 2: Then type the Application name as HelloWorld and click Next. 
+Step 2: Then type the Application name as “listview″ and click Next. 
 
 Step 3: Then select the Minimum SDK as shown below and click Next.
 
@@ -21,12 +20,20 @@ Step 4: Then select the Empty Activity and click Next. Finally click Finish.
 
 Step 5: Design layout in activity_main.xml.
 
-Step 6: Display message give in MainActivity file.
+Step 6: Get contacts details and Display details give in MainActivity file.
 
 Step 7: Save and run the application.
 
 ## PROGRAM:
-## Activity_main.xml:
+```
+/*
+Program to print the list of item.
+Developed by: ANTONYJOHNKENNADY D
+Registration Number : 212221040015
+*/
+```
+activity_main.xml :
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,91 +41,172 @@ Step 7: Save and run the application.
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Hello World!"
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+```
+mylist.xml :
+```
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-## MainActivity.java:
-package com.example.myapplication;
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="2dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#4d4d4d"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+MainActivity.java :
+```
+package com.example.listview;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    ListView list;
+    String[] maintitle ={
+            "AMERICA","AUSTRALIA",
+            "FRANCE","GERMANY",
+            "INDIA","JAPAN",
+            "KOREA","UK"
+    };
+    Integer[] imgid={
+            R.drawable.america,R.drawable.australia,
+            R.drawable.france,R.drawable.germany,
+            R.drawable.india,R.drawable.japan,
+            R.drawable.korea,R.drawable.uk
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast toast = Toast.makeText(getApplicationContext(), "onCreate Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onStart() {
-        super.onStart();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStart Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Toast toast = Toast.makeText(getApplicationContext(), "onRestart Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onPause() {
-        super.onPause();
-        Toast toast = Toast.makeText(getApplicationContext(), "onPause Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onResume() {
-        super.onResume();
-        Toast toast = Toast.makeText(getApplicationContext(), "onResume Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onStop() {
-        super.onStop();
-        Toast toast = Toast.makeText(getApplicationContext(), "onStop Called", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast toast = Toast.makeText(getApplicationContext(), "onDestroy Called", Toast.LENGTH_LONG);
-        toast.show();
+
+        MyListAdapter adapter=new MyListAdapter(this, maintitle,imgid);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                if(position == 0) {
+                    //code specific to first list item
+                    Toast.makeText(getApplicationContext(),"Place Your First Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 1) {
+                    //code specific to 2nd list item
+                    Toast.makeText(getApplicationContext(),"Place Your Second Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 2) {
+
+                    Toast.makeText(getApplicationContext(),"Place Your Third Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 3) {
+
+                    Toast.makeText(getApplicationContext(),"Place Your Forth Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 4) {
+
+                    Toast.makeText(getApplicationContext(),"Place Your Fifth Option Code",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
+```
+MyListAdapter.java :
+```
+package com.example.listview;
 
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-Developed by: ANTONYJOHNKENNADY D
+public class MyListAdapter extends ArrayAdapter<String> {
 
-Registeration Number : 212221040015
+    private final Activity context;
+    private final String[] maintitle;
+    private final Integer[] imgid;
 
+    public MyListAdapter(Activity context, String[] maintitle, Integer[] imgid) {
+        super(context, R.layout.mylist, maintitle);
+        // TODO Auto-generated constructor stub
+        this.context=context;
+        this.maintitle=maintitle;
+        this.imgid=imgid;
+    }
+    public View getView(int position,View view,ViewGroup parent) {
+        LayoutInflater inflater=context.getLayoutInflater();
+        View rowView=inflater.inflate(R.layout.mylist, null,true);
+
+        TextView titleText = (TextView) rowView.findViewById(R.id.title);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+
+        titleText.setText(maintitle[position]);
+        imageView.setImageResource(imgid[position]);
+        return rowView;
+    };
+}
+```
 ## OUTPUT
 
-![image](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/a2482c99-ac97-4470-97a7-70a742b84435)
-![image](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/a85ee5ea-0b2b-4055-b0c5-104151bbc0bd)
-![image](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/37b6b016-0af4-48da-be8b-be7a93a8525f)
-
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/70d48e7a-e006-45f3-8bee-cb1d7590c018)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/592b9026-153f-4958-886c-411a44032dc3)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/69b02f5c-6ed4-4b6e-af9c-82bf0b1f752c)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/79e6335f-774c-43e5-ad0b-d323ff545eb4)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/a3514219-a312-4259-a32a-e5dfed6f2c29)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/872f57fc-7aa1-446f-b59f-6b098827a398)
-![WhatsApp Image 2023-08-30 at 13 38 32](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/1e24b153-c6be-44b9-8f75-6882a41129df)
-![WhatsApp Image 2023-09-03 at 14 54 00](https://github.com/ThiruThanikaiarasu/Mobile-Application-Development/assets/126568917/681c5a9a-af98-49dd-b002-05011013fbb4)
-
-
-
+![image](https://github.com/Siddarthan999/MAD-EXP-7-Develop-an-android-application-to-Display-the-Place-Name-with-Image-using-List-View/assets/91734840/ea612c18-b656-40b6-985d-bec2467b6006)
+![image](https://github.com/Siddarthan999/MAD-EXP-7-Develop-an-android-application-to-Display-the-Place-Name-with-Image-using-List-View/assets/91734840/2bdefdcc-985a-40c6-bbe3-ce23c320d626)
 
 ## RESULT
-Thus a Simple Android Application create a HelloWorld Activity using all lifecycles methods to display messages using Android Studio is developed and executed successfully.
+Thus, a Simple Android Application to create and develop the application to display the place name with image using list view in android studio is developed and executed successfully.
